@@ -191,12 +191,6 @@ public class komatsurouteoptimizerController {
             response.put("message", "CSV vacío");
             return ResponseEntity.badRequest().body(response);
         }
-        // CASO DE QUE SE ENVIE MAS DE UN ARCHIVO
-        // if (file.get) {
-        //     response.put("success", false);
-        //     response.put("message", "El archivo debe ser menor a 1MB");
-        //     return ResponseEntity.badRequest().body(response);
-        // }
 
         // CASO DE QUE EL ARCHIVO NO SEA UN CSV
         if (!file.getOriginalFilename().toLowerCase().endsWith(".csv")) {
