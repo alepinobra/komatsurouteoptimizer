@@ -31,6 +31,7 @@ public class komatsurouteoptimizerController {
         PriorityQueue<Node> pq = new PriorityQueue<>(graphSize, Comparator.comparingInt(n -> n.distance));
         Set<String> visited = new HashSet<>(graphSize, 0.75f);
         
+        // Inicializar todas las ubicaciones con distancia infinita
         for (String node : graph.keySet()) {
             distances.put(node, Integer.MAX_VALUE);
         }
@@ -56,7 +57,13 @@ public class komatsurouteoptimizerController {
                 if (visited.contains(neighborLoc)) continue;
                 
                 int newDistance = distances.get(currentLoc) + weight;
+                // Obtener la distancia actual del vecino, si no existe usar Integer.MAX_VALUE
                 Integer currentDistance = distances.get(neighborLoc);
+                if (currentDistance == null) {
+                    currentDistance = Integer.MAX_VALUE;
+                    distances.put(neighborLoc, Integer.MAX_VALUE);
+                }
+                
                 if (newDistance < currentDistance) {
                     distances.put(neighborLoc, newDistance);
                     previous.put(neighborLoc, currentLoc);
